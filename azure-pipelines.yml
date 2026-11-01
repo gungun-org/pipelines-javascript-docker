@@ -1,0 +1,18 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest' 
+
+variables:
+  # Replace with the name of your target Docker Hub or Azure Container Registry repository
+  repositoryName: 'umeshphendarkar/nov012026' 
+
+steps:
+- task: Docker@2
+  inputs:
+    # Replace with the service connection name created in previous steps
+    containerRegistry: 'dockerhub'
+    repository: $(repositoryName)
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
